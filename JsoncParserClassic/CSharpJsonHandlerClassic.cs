@@ -1,22 +1,22 @@
 ﻿// ReSharper disable once CheckNamespace
 namespace Global;
 
-public class CSharpJsonHandlerClassic: IJsonHandlerClassic
+public class CSharpJsonHandlerClassic: IParseJson
 {
     private readonly JsoncParserClassic jsonParser;
-    private readonly PlainObjectConverter objParser;
+    //private readonly PlainObjectConverter objParser;
     // ReSharper disable once ConvertToPrimaryConstructor
-    public CSharpJsonHandlerClassic(bool numberAsDecimal, bool forceAscii)
+    public CSharpJsonHandlerClassic(bool numberAsDecimal)
     {
         this.jsonParser = new JsoncParserClassic(numberAsDecimal);
-        this.objParser = new PlainObjectConverter(forceAscii);
+        //this.objParser = new PlainObjectConverter(forceAscii);
     }
-    public object Parse(string json)
+    public object ParseJson(string json)
     {
         return this.jsonParser.ParseJson(json);
     }
-    public string Stringify(object x, bool indent, bool sortKeys = false)
-    {
-        return this.objParser.Stringify(x, indent, sortKeys);
-    }
+    // public string Stringify(object x, bool indent, bool sortKeys = false)
+    // {
+    //     return this.objParser.Stringify(x, indent, sortKeys);
+    // }
 }
