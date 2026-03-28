@@ -4,19 +4,18 @@ namespace Global;
 public class CSharpJsonHandlerClassic: IParseJson
 {
     private readonly JsoncParserClassic jsonParser;
-    //private readonly PlainObjectConverter objParser;
-    // ReSharper disable once ConvertToPrimaryConstructor
     public CSharpJsonHandlerClassic(bool numberAsDecimal)
     {
         this.jsonParser = new JsoncParserClassic(numberAsDecimal);
-        //this.objParser = new PlainObjectConverter(forceAscii);
     }
     public object ParseJson(string json)
     {
         return this.jsonParser.ParseJson(json);
     }
-    // public string Stringify(object x, bool indent, bool sortKeys = false)
-    // {
-    //     return this.objParser.Stringify(x, indent, sortKeys);
-    // }
+    public object[] ParseJsonSequence(string jsonSequenceString)
+    {
+        object result = ParseJson(jsonSequenceString);
+        if (result == null) { return null; }
+        return new object[] { result };
+    }
 }
